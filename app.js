@@ -15,7 +15,6 @@ var app = new Vue({
 	},
 	methods: {
 		init() {
-			console.log('in init');
 			this.towers = [[], [],[]];
 			this.disks = [];
 			for (let i = this.number; i >0; i--) {
@@ -46,23 +45,24 @@ var app = new Vue({
 		},
 		makeDisks() {
 			var tmp = [];
-			for (let i = 0; i<this.number; i++) {
-				tmp.push(this.towers[0][i] || 0);
+			let cols = 0;
+			while (cols < 3) {
+				for (let i = 0; i < this.number; i++) {
+					tmp.push(this.towers[cols][i] || 0);
+				}
+				cols++;
 			}
-			for (let i = 0; i<this.number; i++) {
-				tmp.push(this.towers[1][i] || 0);
-			}
-			for (let i = 0; i<this.number; i++) {
-				tmp.push(this.towers[2][i] || 0);
-			}
+
 			this.disks = tmp;
 		},
 
 		style(i, index) {
+			let column = Math.floor(index / this.number);
+			let w = i * 40;
 			return {
-				width: (i*20) + 'px',
-				bottom: (index % this.number) * 10 + 'px',
-				left: this.width * Math.floor(index / this.number) + (this.width - i*20)/2 + 'px'
+				width: w + 'px',
+				bottom: (index % this.number) * 20 + 'px',
+				left: 40 * column * this.number + (this.number * 40 - w)/2 + 'px'
 			}
 		}
 	},

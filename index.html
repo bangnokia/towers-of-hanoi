@@ -1,12 +1,12 @@
 <style>
 .disk {
-	height: 10px;
+	height: 20px;
 	display: inline-block;
 	position: absolute;
 }
 .container {
 	padding-top: 10px;
-	height: 300px;
+	height: 80%;
 	position: relative;
 }
 .list {
@@ -29,11 +29,11 @@
 		<button type="submit">start</button>
 	</form>
 
-	<div class="container" :style="{height: number * 10 + 'px'}">
+	<div class="container" :style="{height: number * 20 + 'px'}">
 		<transition-group name="list">
 			<div class="disk bg-red" v-for="(i, index) in disks"
-							  :key="i"
-							  :style="style(i, index)"></div>
+			   	:key="i"
+			  	:style="style(i, index)"></div>
 		</transition-group>
 	</div>
 </div>
