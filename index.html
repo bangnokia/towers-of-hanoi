@@ -1,0 +1,41 @@
+<style>
+.disk {
+	height: 10px;
+	display: inline-block;
+	position: absolute;
+}
+.container {
+	padding-top: 10px;
+	height: 300px;
+	position: relative;
+}
+.list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+.bg-red {
+	background-color: red;
+}
+.list-move {
+	transition: transform 0.3s;
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<div id="app">
+	<form @submit.prevent="start">
+		<input v-model="number" type="number" min="1" required>
+		<button type="submit">start</button>
+	</form>
+
+	<div class="container" :style="{height: number * 10 + 'px'}">
+		<transition-group name="list">
+			<div class="disk bg-red" v-for="(i, index) in disks"
+							  :key="i"
+							  :style="style(i, index)"></div>
+		</transition-group>
+	</div>
+</div>
+
+<script src="app.js"></script>
